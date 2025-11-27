@@ -3,9 +3,9 @@ import axios from 'axios';
 // ----------------------
 // הגדרות כלליות ל-axios
 // ----------------------
-
-// הגדרת baseURL כברירת מחדל (וודאי שהתצורה תואמת את ה-port של ה-API)
-axios.defaults.baseURL = 'http://localhost:5085';
+// הקוד קורא את הכתובת ממשתנה סביבה שמוגדר ב-Render
+const baseURL = process.env.REACT_APP_API_BASE_URL; 
+axios.defaults.baseURL = baseURL;
 
 // אופציונלי: אם יש טוקן, ניתן להוסיף כאן כותרת ברירת מחדל
 // axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
