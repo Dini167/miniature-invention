@@ -1,4 +1,11 @@
-/* איפוס בסיסי ושימוש בגופנים מודרניים */
+/* פלטת צבעים פסטלית:
+   - רקע: #F5F7FA (אפור בהיר-תכלכל)
+   - כרטיס ראשי: #FFFFFF (לבן נקי)
+   - הדגשה (כפתורים, הוק): #B1E1DD (טורקיז פסטלי עדין)
+   - טקסט: #4B4E61 (אפור-כחול כהה)
+   - הושלם: #D9D9E3 (אפור רך מאוד)
+*/
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -6,26 +13,31 @@
 }
 
 body {
-    /* רקע נייטרלי ובהיר */
-    background: #f0f3f6; 
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-    color: #24292e; /* צבע טקסט ראשי כהה */
+    background: #F5F7FA; /* רקע פסטלי בהיר ומרגיע */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #4B4E61; /* צבע טקסט ראשי רך */
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* יישור למעלה ולא למרכז אנכי */
+    align-items: flex-start;
     min-height: 100vh;
-    padding-top: 50px; /* רווח עליון */
+    padding-top: 60px;
+    transition: background-color 0.5s ease;
 }
 
-/* מכולת ה-Todo App */
+/* מכולת ה-Todo App - הכרטיס המרכזי */
 .todoapp {
-    /* רוחב מקסימלי נוח לקריאה */
     width: 100%;
-    max-width: 550px; 
-    background: #ffffff;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* צל עדין ומודרני */
-    border-radius: 16px; /* פינות מעוגלות */
-    padding: 30px;
+    max-width: 580px;
+    background: #FFFFFF;
+    box-shadow: 0 15px 35px rgba(88, 102, 126, 0.1); /* צל עמוק אך שקוף */
+    border-radius: 20px; /* פינות מעוגלות מאוד */
+    padding: 40px;
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* כותרת */
@@ -34,43 +46,36 @@ body {
 }
 
 .header h1 {
-    font-size: 36px;
-    font-weight: 600; /* עובי גופן חצי-מודגש */
-    color: #24292e;
+    font-size: 44px;
+    font-weight: 300; /* גופן קליל */
+    color: #4B4E61;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
-/* טופס הוספת משימה חדשה */
-.header form {
-    display: flex;
-}
-
+/* שדה קלט משימה חדשה */
 .new-todo {
-    /* סגנון שדה קלט נקי ומודרני */
-    flex-grow: 1;
-    padding: 12px 15px;
-    font-size: 16px;
-    border: 1px solid #dfe3e7;
-    border-radius: 8px;
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 18px;
+    border: 2px solid #EAECEF;
+    border-radius: 12px;
     outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    /* צל קטן פנימי מונע "קפיצה" בהתמקדות */
-    box-shadow: inset 0 1px 2px rgba(27, 31, 35, 0.075); 
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* מעבר חלק */
+    background: #FFFFFF;
 }
 
 .new-todo::placeholder {
-    color: #8c96a3;
+    color: #A0A5B7;
 }
 
 .new-todo:focus {
-    border-color: #0366d6; /* צבע כחול של GitHub בהתמקדות */
-    box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.25);
+    border-color: #B1E1DD; /* טורקיז פסטלי בהתמקדות */
+    box-shadow: 0 0 0 4px rgba(177, 225, 221, 0.5); /* צל טבעתי רך */
 }
 
-/* סעיף ראשי (רשימת המשימות) */
+/* סעיף רשימת המשימות */
 .main {
-    border-top: 1px solid #eaecef; /* קו הפרדה עדין */
     padding-top: 20px;
 }
 
@@ -83,9 +88,16 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 0;
-    border-bottom: 1px solid #eaecef;
-    transition: background-color 0.3s;
+    padding: 15px 0;
+    border-bottom: 1px solid #EDEDF2;
+    transition: background-color 0.3s ease-out;
+    position: relative;
+    opacity: 0; /* יאופס באמצעות אנימציה בג'אווהסקריפט אם תרצי */
+    animation: slideIn 0.5s forwards;
+}
+
+@keyframes slideIn {
+    to { opacity: 1; }
 }
 
 .todo-list li:last-child {
@@ -94,7 +106,7 @@ body {
 
 /* סגנון בעת ריחוף (Hover) */
 .todo-list li:hover {
-    background-color: #f7f9fb;
+    background-color: #FAFCFF; /* רקע ריחוף קל */
 }
 
 .todo-list li .view {
@@ -103,74 +115,93 @@ body {
     flex-grow: 1;
 }
 
-/* תיבת סימון (Checkbox) */
+/* תיבת סימון (Checkbox) - סגנון מותאם אישית יפה */
 .toggle {
-    /* סגנון תיבת הסימון למראה מודרני יותר */
     appearance: none;
     -webkit-appearance: none;
-    height: 20px;
-    width: 20px;
-    border: 2px solid #586069;
-    border-radius: 6px;
+    height: 24px;
+    width: 24px;
+    border: 2px solid #A0A5B7;
+    border-radius: 50%; /* צורה עגולה */
     cursor: pointer;
-    margin-right: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.2s, border-color 0.2s;
+    margin-right: 18px;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    position: relative;
 }
 
 .toggle:checked {
-    border-color: #28a745; /* ירוק GitHub */
-    background-color: #28a745;
+    border-color: #B1E1DD;
+    background-color: #B1E1DD;
 }
 
-/* אייקון V קטן בתוך תיבת הסימון המסומנת */
-.toggle:checked::before {
-    content: '\2713'; /* סימן V */
-    font-size: 14px;
-    color: white;
-    font-weight: bold;
+/* אייקון V קטן בתוך תיבת הסימון המסומנת (אנימציה) */
+.toggle:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 6px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: translate(-50%, -50%) rotate(45deg) scale(1);
+    opacity: 1;
+    transition: all 0.3s ease 0.1s;
+}
+.toggle:not(:checked)::after {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(45deg) scale(0.5);
 }
 
 /* תווית המשימה */
 .todo-list li label {
-    font-size: 16px;
+    font-size: 17px;
     flex-grow: 1;
     cursor: pointer;
     padding: 0 10px;
+    word-break: break-word; /* למניעת גלישה בשורה */
+    transition: color 0.3s ease;
 }
 
-/* משימה שהושלמה */
+/* משימה שהושלמה (Completed) */
 .todo-list li.completed label {
-    color: #8c96a3; /* אפור בהיר */
+    color: #D9D9E3;
     text-decoration: line-through;
 }
 
-/* כפתור מחיקה (Destroy button) */
+/* כפתור מחיקה (Destroy button) - אייקון X מעוצב */
 .destroy {
-    /* כפתור מחיקה עדין (אייקון X) */
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 20px;
-    color: #a8a8a8;
+    font-size: 24px;
+    color: #FF8F9C; /* אדום פסטלי עדין */
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.2s ease;
+    padding: 10px;
     line-height: 1;
-    opacity: 0; /* מופיע רק בריחוף */
-    transition: color 0.2s, opacity 0.2s;
-    padding: 5px; /* שטח לחיצה נוח */
+    margin-right: -10px; /* כדי להצמיד לקצה ה-LI */
+    position: relative;
+    z-index: 10;
 }
 
-/* הצגת כפתור המחיקה בריחוף על פריט המשימה */
 .todo-list li:hover .destroy {
-    opacity: 1;
+    opacity: 0.8;
 }
 
 .destroy:hover {
-    color: #cb2431; /* אדום GitHub */
+    color: #FF5C70;
+    opacity: 1;
+    transform: scale(1.1); /* אנימציה קטנה בריחוף */
 }
 
-/* הסתרת כפתור העריכה שקיים בקוד המקור של TodoMVC */
+/* סימן X בתוך כפתור המחיקה */
+.destroy::before {
+    content: '×'; /* סימן כפל גדול */
+}
+
+/* הסתרת קלאס עריכה */
 .edit {
     display: none;
 }
