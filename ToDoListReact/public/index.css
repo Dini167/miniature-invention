@@ -1,3 +1,14 @@
+/* ============================================
+   MODERN TO-DO LIST APP - PREMIUM DESIGN
+   Inspired by GitHub Copilot Design
+   ============================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html,
 body {
     margin: 0;
@@ -20,12 +31,14 @@ button {
 }
 
 body {
-    font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    line-height: 1.4em;
-    background: #eaeaea url('bg.png');
-    color: #4d4d4d;
-    width: 550px;
+    font: 14px 'Poppins', sans-serif;
+    line-height: 1.6em;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+    color: #e2e8f0;
+    width: 100%;
+    min-height: 100vh;
     margin: 0 auto;
+    padding: 20px;
     -webkit-font-smoothing: antialiased;
     -moz-font-smoothing: antialiased;
     -ms-font-smoothing: antialiased;
@@ -38,15 +51,17 @@ input[type="checkbox"] {
     outline: none;
 }
 
-#todoapp {
-    background: #fff;
-    background: rgba(255, 255, 255, 0.9);
-    margin: 130px 0 40px 0;
-    border: 1px solid #ccc;
+.todoapp {
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%);
+    margin: 30px auto;
+    padding: 0;
     position: relative;
-    border-top-left-radius: 2px;
-    border-top-right-radius: 2px;
-    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.15);
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    max-width: 700px;
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
 }
 
     #todoapp:before {
@@ -603,30 +618,36 @@ body {
     .todoapp input::-webkit-input-placeholder {
         font-style: italic;
         font-weight: 300;
-        color: #e6e6e6;
+        color: #94a3b8;
     }
 
     .todoapp input::-moz-placeholder {
         font-style: italic;
         font-weight: 300;
-        color: #e6e6e6;
+        color: #94a3b8;
     }
 
     .todoapp input::input-placeholder {
         font-style: italic;
         font-weight: 300;
-        color: #e6e6e6;
+        color: #94a3b8;
     }
 
     .todoapp h1 {
-        position: absolute;
-        top: -155px;
+        position: relative;
         width: 100%;
-        font-size: 100px;
-        font-weight: 100;
+        font-size: 42px;
+        font-weight: 600;
         text-align: center;
-        color: #194350;
+        color: #0ea5e9;
         font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 30px 20px 0 20px;
+        letter-spacing: -1px;
+        background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
         -webkit-text-rendering: optimizeLegibility;
         -moz-text-rendering: optimizeLegibility;
         text-rendering: optimizeLegibility;
@@ -637,31 +658,45 @@ body {
     position: relative;
     margin: 0;
     width: 100%;
-    font-size: 24px;
-    font-family: inherit;
-    font-weight: inherit;
-    line-height: 1.4em;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    line-height: 1.6em;
     border: 0;
-    color: inherit;
+    color: #e2e8f0;
     padding: 6px;
-    border: 1px solid #999;
-    box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
+    border: 1px solid transparent;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .new-todo {
-    padding: 16px 16px 16px 60px;
+    padding: 20px 20px 20px 24px;
     border: none;
-    background: rgba(0, 0, 0, 0.003);
-    box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.new-todo:hover {
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom-color: rgba(148, 163, 184, 0.2);
+}
+
+.new-todo:focus {
+    outline: none;
+    background: rgba(0, 0, 0, 0.4);
+    border-bottom-color: rgba(6, 182, 212, 0.5);
+    box-shadow: inset 0 0 0 1px rgba(6, 182, 212, 0.3);
 }
 
 .main {
     position: relative;
     z-index: 2;
-    border-top: 1px solid #e6e6e6;
+    border-top: 1px solid rgba(148, 163, 184, 0.1);
 }
 
 .toggle-all {
